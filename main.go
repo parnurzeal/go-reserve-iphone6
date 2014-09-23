@@ -52,8 +52,8 @@ func main() {
 	request := gorequest.New()
 	for {
 		// get availability json file
-		//resp, body, errs := request.Get("https://reserve.cdn-apple.com/JP/ja_JP/reserve/iPhone/availability.json").End()
-		resp, body, errs := request.Get("http://localhost:8080/availability.json").End()
+		resp, body, errs := request.Get("https://reserve.cdn-apple.com/JP/ja_JP/reserve/iPhone/availability.json").End()
+		//resp, body, errs := request.Get("http://localhost:8080/availability.json").End()
 		if errs != nil {
 			fmt.Println("ERROR: ", errs)
 			continue
