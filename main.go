@@ -38,14 +38,22 @@ const GrayPlus16 = "MGA82J/A"
 const GrayPlus64 = "MGAH2J/A"
 const GrayPlus128 = "MGAC2J/A"
 
+func Symbol(in bool) string {
+	if in {
+		return "\033[32mO"
+	} else {
+		return "\033[31mX"
+	}
+}
+
 func main() {
 	spinner := spin.New()
 	const layout = "15:04:05"
 	request := gorequest.New()
 	for {
 		// get availability json file
-		resp, body, errs := request.Get("https://reserve.cdn-apple.com/JP/ja_JP/reserve/iPhone/availability.json").End()
-		//resp, body, errs := request.Get("http://localhost:8080/availability.json").End()
+		//resp, body, errs := request.Get("https://reserve.cdn-apple.com/JP/ja_JP/reserve/iPhone/availability.json").End()
+		resp, body, errs := request.Get("http://localhost:8080/availability.json").End()
 		if errs != nil {
 			fmt.Println("ERROR: ", errs)
 			continue
@@ -80,7 +88,7 @@ func main() {
 				fmt.Println("ERROR: Cannot decode " + body)
 			}
 			fmt.Printf("\033[2J\033[0;0H")
-			fmt.Printf("%-15s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s\n", "Store",
+			fmt.Printf("\033[37m%-15s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s %8s\n", "Store",
 				"Silv16", "Silv64", "Silv128",
 				"Gold16", "Gold64", "Gold128",
 				"Gray16", "Gray64", "Gray128",
@@ -89,26 +97,26 @@ func main() {
 				"Gray-P16", "Gray-P64", "Gray-P128",
 			)
 			for _, s := range stores.Stores {
-				fmt.Printf("%s", s.StoreName)
-				fmt.Printf("\r\033[15C%8t %8t %8t %8t %8t %8t %8t %8t %8t %8t %8t %8t %8t %8t %8t %8t %8t %8t\n",
-					data[s.StoreNumber].(map[string]interface{})[Silver16],
-					data[s.StoreNumber].(map[string]interface{})[Silver64],
-					data[s.StoreNumber].(map[string]interface{})[Silver128],
-					data[s.StoreNumber].(map[string]interface{})[Gold16],
-					data[s.StoreNumber].(map[string]interface{})[Gold64],
-					data[s.StoreNumber].(map[string]interface{})[Gold128],
-					data[s.StoreNumber].(map[string]interface{})[Gray16],
-					data[s.StoreNumber].(map[string]interface{})[Gray64],
-					data[s.StoreNumber].(map[string]interface{})[Gray128],
-					data[s.StoreNumber].(map[string]interface{})[SilverPlus16],
-					data[s.StoreNumber].(map[string]interface{})[SilverPlus64],
-					data[s.StoreNumber].(map[string]interface{})[SilverPlus128],
-					data[s.StoreNumber].(map[string]interface{})[GoldPlus16],
-					data[s.StoreNumber].(map[string]interface{})[GoldPlus64],
-					data[s.StoreNumber].(map[string]interface{})[GoldPlus128],
-					data[s.StoreNumber].(map[string]interface{})[GrayPlus16],
-					data[s.StoreNumber].(map[string]interface{})[GrayPlus64],
-					data[s.StoreNumber].(map[string]interface{})[GrayPlus128],
+				fmt.Printf("\033[37m%s", s.StoreName)
+				fmt.Printf("\r\033[15C%13s %13s %13s %13s %13s %13s %13s %13s %13s %13s %13s %13s %13s %13s %13s %13s %13s %13s\n",
+					Symbol(data[s.StoreNumber].(map[string]interface{})[Silver16].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[Silver64].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[Silver128].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[Gold16].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[Gold64].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[Gold128].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[Gray16].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[Gray64].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[Gray128].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[SilverPlus16].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[SilverPlus64].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[SilverPlus128].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[GoldPlus16].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[GoldPlus64].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[GoldPlus128].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[GrayPlus16].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[GrayPlus64].(bool)),
+					Symbol(data[s.StoreNumber].(map[string]interface{})[GrayPlus128].(bool)),
 				)
 			}
 			fmt.Print("\x07")
