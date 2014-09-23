@@ -1,0 +1,39 @@
+{
+  "updatedTime" : "PM 4:52",
+  "stores" : [ {
+    "storeNumber" : "R150",
+    "storeName" : "仙台一番町",
+    "storeEnabled" : true
+  }, {
+    "storeNumber" : "R005",
+    "storeName" : "名古屋栄",
+    "storeEnabled" : true
+  }, {
+    "storeNumber" : "R091",
+    "storeName" : "心斎橋",
+    "storeEnabled" : true
+  }, {
+    "storeNumber" : "R193",
+    "storeName" : "札幌",
+    "storeEnabled" : true
+  }, {
+    "storeNumber" : "R119",
+    "storeName" : "渋谷",
+    "storeEnabled" : true
+  }, {
+    "storeNumber" : "R048",
+    "storeName" : "福岡天神",
+    "storeEnabled" : true
+  }, {
+    "storeNumber" : "R224",
+    "storeName" : "表参道",
+    "storeEnabled" : true
+  }, {
+    "storeNumber" : "R079",
+    "storeName" : "銀座",
+    "storeEnabled" : true
+  } ],
+  "timezone" : "JST",
+  "updatedDate" : "09/22 (月)",
+  "reservationURL" : "https://reserve-jp.apple.com/JP/ja_JP/reserve/iPhone"
+}
