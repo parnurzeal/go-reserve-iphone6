@@ -75,8 +75,8 @@ func main() {
 				fmt.Println("ERROR: cannot write file", err)
 			}
 			// getting stores json file
-			//resp, body, errs := request.Get("https://reserve.cdn-apple.com/JP/ja_JP/reserve/iPhone/stores.json").End()
-			resp, body, errs := request.Get("http://localhost:8080/stores.json").End()
+			resp, body, errs := request.Get("https://reserve.cdn-apple.com/JP/ja_JP/reserve/iPhone/stores.json").End()
+			//resp, body, errs := request.Get("http://localhost:8080/stores.json").End()
 			if errs != nil {
 				fmt.Println("ERROR: Cannot get stores data", errs)
 			}
